@@ -1,20 +1,22 @@
 <template>
 	<div class="courses">
 		<controls page="courses" title="Courses" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+		<data-table :data="courses" />
 	</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Controls from '@/components/Controls.vue'; // @ is an alias to /src
+import DataTable from '@/components/DataTable.vue' // @ is an alias to /src
+
 // mock ajax api
 import api from '../api'
 
 @Component({
 	components: {
 		Controls,
-  },
+		DataTable,
 	}
 })
 export default class Courses extends Vue {
