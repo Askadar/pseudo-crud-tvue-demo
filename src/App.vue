@@ -18,18 +18,8 @@
 // which we don't need since tailwind bundlesone
 // (without option to discard it)
 // @import '../node_modules/normalize.css/normalize.css'
-@import './assets/tailwind'
-@require './assets/transitions'
-
-color-main = #2e303f
-color-main--lighten = #575761
-// 
-color-sub = #64c07d
-color-primary = #4e99c5
-color-danger = #f44739
-// 
-color-white = #f5f5f5
-color-white-background = #f1f1f1
+@require './assets/variables'
+@import './assets/imports'
 
 body
 	background color-white-background

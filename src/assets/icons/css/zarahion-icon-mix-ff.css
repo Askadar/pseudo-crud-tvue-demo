@@ -1,0 +1,13 @@
+@font-face {
+	font-family: 'zarahion-icon-mix';
+	src: url('../font/zarahion-icon-mix.eot?17790549');
+	src: url('../font/zarahion-icon-mix.eot?17790549#iefix')
+			format('embedded-opentype'),
+		url('../font/zarahion-icon-mix.woff2?17790549') format('woff2'),
+		url('../font/zarahion-icon-mix.woff?17790549') format('woff'),
+		url('../font/zarahion-icon-mix.ttf?17790549') format('truetype'),
+		url('../font/zarahion-icon-mix.svg?17790549#zarahion-icon-mix')
+			format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
