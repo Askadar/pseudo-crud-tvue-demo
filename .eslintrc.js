@@ -1,22 +1,26 @@
+// global eslint config
 // @nuxtjs/eslint-config eslint eslint-config-standard eslint-config-problems eslint-plugin-import eslint-plugin-html eslint-plugin-jest eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue
 
 module.exports = {
 	root: true,
 	env: {
 		browser: true,
-		node: true
+		node: true,
 	},
 	parserOptions: {
-		parser: 'babel-eslint'
+		parser: 'babel-eslint',
+		ecmaFeatures: {
+			legacyDecorators: true,
+		},
 	},
 	globals: {
-		chrome: true
+		chrome: true,
 	},
 	extends: [
 		'@nuxtjs',
 		'problems',
 		'eslint:recommended',
-		'plugin:vue/recommended'
+		'plugin:vue/recommended',
 	],
 	plugins: ['vue', 'eslint-plugin-html', 'eslint-plugin-vue'],
 	rules: {
@@ -30,24 +34,24 @@ module.exports = {
 			'warn',
 			'never',
 			{
-				beforeStatementContinuationChars: 'always'
-			}
+				beforeStatementContinuationChars: 'always',
+			},
 		],
 		'space-before-function-paren': 'warn',
 		'comma-spacing': [
 			'warn',
 			{
 				before: false,
-				after: true
-			}
+				after: true,
+			},
 		],
 		'no-multiple-empty-lines': [
 			'warn',
 			{
 				max: 2,
 				maxEOF: 1,
-				maxBOF: 0
-			}
+				maxBOF: 0,
+			},
 		],
 		'operator-linebreak': ['warn', 'after'],
 		quotes: ['warn', 'single'],
@@ -73,9 +77,9 @@ module.exports = {
 				singleline: 2,
 				multiline: {
 					max: 1,
-					allowFirstLine: false
-				}
-			}
-		]
-	}
+					allowFirstLine: false,
+				},
+			},
+		],
+	},
 }
