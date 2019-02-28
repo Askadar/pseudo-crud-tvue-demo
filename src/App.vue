@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <nav id="nav">
-			<div class="container mx-auto flex items-center">
-				<router-link to="/" class="logo">Wiz Courses</router-link>
-				<router-link to="/">Courses</router-link> |
-				<router-link to="/users">Users</router-link> |
-				<router-link to="/about">_About</router-link>
-			</div>
-    </nav>
-    <router-view/>
-		<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+		<Nav></Nav>
+		<transition appear name="page">
+			<router-view :key="$route.name"/>
+		</transition>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import Nav from "@/components/Nav.vue";
+
+@Component({
+	components: {
+		Nav
+	}
+})
+export default class App extends Vue { }
+</script>
 
 <style lang="stylus">
 // grab normalizer
@@ -28,35 +34,4 @@ body
 	font-family 'Raleway', Helvetica, Arial, sans-serif
 	-webkit-font-smoothing antialiased
 	-moz-osx-font-smoothing grayscale
-	// color #2c3e50
-
-#nav
-	// padding 0 32px
-	background color-main
-	color color-main--lighten
-
-	a
-		font-weight bold
-		color @color
-		text-decoration none
-		margin 0 8px
-		display inline-block
-		line-height 3em
-		tr()
-
-		&.logo
-			margin-right auto
-			color color-white
-			// pseudo-logo-pseudo-font
-			font-weight 200
-			font-family cursive
-
-			&:hover
-				text-shadow 0 0 8px color-primary
-
-		&:hover
-			color darken(color-white, 25%)
-
-		&.router-link-exact-active
-			color color-white
 </style>
