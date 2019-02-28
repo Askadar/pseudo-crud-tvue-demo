@@ -1,2 +1,13 @@
+@require 'variables'
+
 tr(time = 280ms)
 	transition all time ease-in-out
+
+.page-enter, .page-leave
+	opacity 0
+
+.page-enter-active, .page-leave-active
+	transition opacity (tr-time * 2) ease-in-out
+
+.page-enter-to, .page-leave-to
+	opacity 1
