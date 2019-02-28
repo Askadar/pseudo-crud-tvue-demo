@@ -8,6 +8,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Controls from '@/components/Controls.vue'; // @ is an alias to /src
+// mock ajax api
+import api from '../api'
 
 @Component({
 	components: {
@@ -16,5 +18,11 @@ import Controls from '@/components/Controls.vue'; // @ is an alias to /src
 	}
 })
 export default class Courses extends Vue {
+	courses = []
+
+	async mounted() {
+		const courses = (await api.get('/courses')).data
+		this.courses = courses
+	}
 }
 </script>
