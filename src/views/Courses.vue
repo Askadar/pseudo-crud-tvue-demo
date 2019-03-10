@@ -1,7 +1,7 @@
 <template>
 	<div class="courses">
 		<controls page="courses" title="Courses" />
-		<data-table :data="courses" />
+		<data-table :data="courses" :columns="['name', 'speaker']" />
 	</div>
 </template>
 
