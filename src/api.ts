@@ -1,3 +1,21 @@
+const defaultCourses = [
+	{ speaker: 'Peter', name: 'Vue Mastery' },
+	{ speaker: 'Peter', name: 'Intro to Nuxt.js' },
+	{ speaker: 'James', name: 'CSS3 in-depth' },
+]
+
+const defaultUsers = [
+	{ name: 'Peter', level: 'speaker',  },
+	{ name: 'James', level: 'speaker', },
+	{ name: 'Vlad', level: 'student', inactive: true, },
+	{ name: 'Jenny', level: 'student', },
+]
+
+const defaultData = {
+	courses: defaultCourses,
+	users: defaultUsers,
+}
+
 const enum Methods {
 	GET = 'GET',
 	POST = 'POST',
@@ -27,14 +45,13 @@ class Mock {
 	}
 	private loadData(): Object {
 		try {
-			const data = JSON.parse(localStorage.getItem('__zn') || '{}')
+			const data = JSON.parse(localStorage.getItem('__zn') || JSON.stringify(defaultData))
 			if (data && Object.keys(data).length > 0) return data
 		} catch (err) {
 			console.warn(`Error parsing localstorage at Mock`, err)
 			localStorage.removeItem('__zn')
-			return {}
 		}
-		return {}
+		return defaultData
 	}
 
 	private async request(
@@ -47,9 +64,9 @@ class Mock {
 	) {
 		const keys = path.split('/').slice(1)
 		let prop = keys.reduce((chainedObject: any, nextKey: string) => {
-			let parsing = chainedObject || this.data
-			return parsing[nextKey] || null
-		}, {})
+			// let parsing = chainedObject
+			return chainedObject[nextKey] || null
+		}, this.data)
 
 		if (options.method === Methods.GET)
 			return {
