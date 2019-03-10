@@ -1,7 +1,7 @@
 <template>
 	<div class="controls container mx-auto flex justify-between">
 		<div class="left flex ">
-			<round-button class="primary z-icon mr-3">&#xe802;</round-button>
+			<round-button class="primary mr-3"><z-icon>add</z-icon></round-button>
 			<round-search-bar />
 		</div>
 		<h2 class="center title text-center">{{title}}</h2>
@@ -33,12 +33,14 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import RoundSelect from '@/components/Form/RoundSelect.vue';
 import RoundButton from '@/components/Form/RoundButton.vue';
 import RoundSearchBar from '@/components/Form/RoundSearchBar.vue';
+import ZIcon from '@/components/ZIcon.vue';
 
 @Component({
 	components: {
 		RoundSelect,
 		RoundButton,
 		RoundSearchBar,
+		ZIcon,
 	}
 })
 export default class Controls extends Vue {

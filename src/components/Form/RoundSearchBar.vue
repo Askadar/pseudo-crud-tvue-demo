@@ -1,6 +1,8 @@
 <template>
 	<div class="search-bar-wrap">
-		<round-button class="sub z-icon" @click="$emit('search')">&#xe801;</round-button>
+		<round-button class="sub z-icon" @click="$emit('search')">
+			<z-icon>search</z-icon>
+		</round-button>
 		<input
 			:value="value"
 			type="search"
@@ -35,10 +37,12 @@
 <script lang="ts">
 import { Component, Prop, Emit, Vue } from "vue-property-decorator";
 import RoundButton from '@/components/Form/RoundButton.vue';
+import ZIcon from '@/components/ZIcon.vue';
 
 @Component({
 	components: {
-		RoundButton
+		RoundButton,
+		ZIcon,
 	}
 })
 export default class RoundSearchBar extends Vue {
