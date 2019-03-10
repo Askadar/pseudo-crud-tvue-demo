@@ -1,0 +1,57 @@
+const enum Methods {
+	GET = 'GET',
+	POST = 'POST',
+}
+
+function Mock(this: {}) {
+	// this.t = 1
+	return this
+}
+
+Mock.prototype.request = (
+	path: string,
+	options: {
+		method: Methods
+		data?: Object
+		params?: Object
+	}
+) => {
+	return { path, options }
+}
+
+// mostly copy from axios that we are mocking
+const _bind = (fn: Function, self: Function) => {
+	return function wrap() {
+		var args = new Array(arguments.length)
+		for (var i = 0; i < args.length; i++) {
+			args[i] = arguments[i]
+		}
+		return fn.apply(self, args)
+	}
+}
+
+const _extend = (a: Object, b: Object, self?: Function) => {
+	Object.entries(b).forEach(([key, val]) => {
+		if (self && typeof val === 'function') {
+			a[key] = _bind(val, self)
+		} else {
+			a[key] = val
+		}
+	})
+	return a
+}
+
+const _createInstance = () => {
+	const context = new Mock()
+	const instance = _bind(Mock.prototype.request, context)
+
+	_extend(instance, Mock.prototype, context)
+
+	_extend(instance, context)
+
+	return instance
+}
+
+const mockApi = _createInstance()
+
+export default mockApi
