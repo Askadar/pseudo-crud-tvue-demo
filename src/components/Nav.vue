@@ -19,6 +19,13 @@
 	background color-main
 	color color-main--lighten
 
+	.container
+		a:first-child
+			margin-left -0.5rem
+
+		a:last-child
+			margin-right -0.5rem
+
 	a
 		// font-weight bold
 		color lighten(@color, 20%)
