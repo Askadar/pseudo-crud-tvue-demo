@@ -1,15 +1,15 @@
 <template>
-  <div id="app">
-		<Nav></Nav>
+	<div id="app">
+		<Nav />
 		<transition appear name="page">
-			<router-view :key="$route.name"/>
+			<router-view :key="$route.name" />
 		</transition>
-  </div>
+	</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Nav from "@/components/Nav.vue";
+import { Component, Vue } from 'vue-property-decorator'
+import Nav from '@/components/Nav.vue'
 
 @Component({
 	components: {
@@ -21,7 +21,7 @@ export default class App extends Vue { }
 
 <style lang="stylus">
 // grab normalizer
-// which we don't need since tailwind bundlesone
+// which we don't need since tailwind bundles one
 // (without option to discard it)
 // @import '../node_modules/normalize.css/normalize.css'
 @require './assets/variables'
