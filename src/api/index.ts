@@ -1,20 +1,4 @@
-const defaultCourses = [
-	{ speaker: 'Peter', name: 'Vue Mastery' },
-	{ speaker: 'Peter', name: 'Intro to Nuxt.js' },
-	{ speaker: 'James', name: 'CSS3 in-depth' },
-]
-
-const defaultUsers = [
-	{ name: 'Peter', level: 'speaker',  },
-	{ name: 'James', level: 'speaker', },
-	{ name: 'Vlad', level: 'student', inactive: true, },
-	{ name: 'Jenny', level: 'student', },
-]
-
-const defaultData = {
-	courses: defaultCourses,
-	users: defaultUsers,
-}
+import defaultData from './data'
 
 const enum Methods {
 	GET = 'GET',
