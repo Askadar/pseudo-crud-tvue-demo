@@ -4,17 +4,27 @@
 	font-family 'zarahion-icon-mix'
 	font-size 1em
 
-.primary
+.primary.primary
 	background color-primary
 	color color-white
 
-.sub
+.sub.sub
 	background color-sub
 	color color-white
 
-.danger
+.danger.danger
 	background color-danger
 	color color-white
+
+// kinda should find better solution rather than snapping !important or tripling selector
+.has-text-primary
+	color color-primary !important
+
+.has-text-sub
+	color color-sub !important
+
+.has-text-danger
+	color color-danger !important
 
 .title
 	text-transform uppercase
