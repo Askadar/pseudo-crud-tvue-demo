@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Controls from '@/components/Controls.vue'; // @ is an alias to /src
-import DataTable from '@/components/DataTable.vue' // @ is an alias to /src
+import DataTable from '@/components/DataTable/DataTable.vue' // @ is an alias to /src
 
 // mock ajax api
 import api from '../api'
