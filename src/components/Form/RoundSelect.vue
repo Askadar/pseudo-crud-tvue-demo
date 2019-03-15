@@ -1,56 +1,73 @@
 <template>
-	<div class="select-wrap">
-		<div class="before" />
+	<div :class="{ 'select-wrap': true, focus }">
 		<span class="arrow z-icon">&#xf107;</span>
-		<select>
-			<option value="1">one</option>
-			<option value="2">two</option>
-			<option value="3">three</option>
+		<select
+			@change="$e => $emit('select', $e.target.value)"
+			@focus="focus = true"
+			@blur="focus = false"
+		>
+			<template v-for="item in items">
+				<option :value="item" v-if="typeof item !== 'object'" :key="item">
+					{{ item }}
+				</option>
+				<option :value="item.value" v-else :key="item.label">
+					{{ item.label }}
+				</option>
+			</template>
 		</select>
-		<div class="after" />
 	</div>
 </template>
 
 <style lang="stylus">
+json('../../assets/variables.json')
+
 .select-wrap
 	position relative
 	display block
 	height 3rem
-	width 11rem
-	padding 0rem 3rem
+	width 9rem
+	padding 0rem 1rem
+	background white
+	border-radius 1.5rem
+	box-shadow 0 0 2px 0 rgba(0, 0, 0, 0.5)
+	transition tr-time box-shadow ease-in-out
 
 	// background red
 	select
 		padding 0
-		width 5rem
+		width 100%
 		height @height
-		background white
+		background none
 		appearance none
 
 		&::-ms-expand
 			display none
 
+	&.focus
+		box-shadow @box-shadow, 0 0 0px 2px rgba(122, 173, 255, 0.5)
+
+		select:focus
+			outline none
+
 	.arrow
 		position absolute
-		right 3.2em
+		right 1.2em
 		top 0.95em
 		pointer-events none
 		user-select none
-
-	.before, .after
-		content ''
-		display block
-		position absolute
-		top 0
-		height @height
-		width @height
-		border-radius 100%
-		background white
-		z-index -1
-
-	.before
-		left (@height / 2)
-
-	.after
-		right (@height / 2)
 </style>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component({
+})
+export default class RoundSelect extends Vue {
+	@Prop({
+		type: Array,
+		default: () => (['5', '10', '15'])
+	}) readonly items!: Array<string | ({ label: string, value: string })>
+
+	focus = false
+}
+</script>

@@ -1,10 +1,10 @@
 <template>
 	<div class="search-bar-wrap">
-		<round-button class="sub z-icon" @click="$emit('search')">
+		<round-button class="sub z-icon" @click="search">
 			<z-icon>search</z-icon>
 		</round-button>
 		<input
-			:value="value"
+			:value="searchString"
 			type="search"
 			class="input adjacent to-left"
 			@input="$e => input($e.target.value)"
@@ -13,6 +13,8 @@
 </template>
 
 <style lang="stylus">
+json('../../assets/variables.json')
+
 .search-bar-wrap
 	height 3rem
 	width 11rem
@@ -22,16 +24,21 @@
 		margin-right - @height
 		z-index 1
 		flex 0 0 @height
-		box-shadow none
+		// overlays input's shadow, but oh well for now
+		// box-shadow none
 
 	.input
 		padding-right 1em
-		padding-left 1.5rem + @padding-right
+		padding-left 2.5rem + @padding-right
 		flex 1 0
 		min-width 4em
 		border-radius @height
 		box-shadow 0 0 2px 0 rgba(0, 0, 0, 0.5)
-		transition tr-time min-width ease-in-out
+		transition tr-time box-shadow ease-in-out
+
+		&:focus
+			outline none
+			box-shadow @box-shadow, 0 0 0px 2px rgba(122, 173, 255, 0.5)
 </style>
 
 <script lang="ts">
@@ -48,11 +55,15 @@ import ZIcon from '@/components/ZIcon.vue';
 export default class RoundSearchBar extends Vue {
 	@Prop({ type: String, default: '_ButtonName_' }) readonly title!: string;
 
-	value: string = ''
+	searchString: string = ''
 
 	@Emit('input')
-	input(value: string) {
-		this.value = value
+	input(searchString: string) {
+		this.searchString = searchString
+	}
+	@Emit('search')
+	search() {
+		return this.searchString
 	}
 }
 </script>
