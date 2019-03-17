@@ -10,6 +10,12 @@ yarn install
 yarn run serve
 ```
 
+or
+
+```
+yarn dev
+```
+
 ### Compiles and minifies for production
 ```
 yarn run build
