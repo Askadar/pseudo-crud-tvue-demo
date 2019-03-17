@@ -1,13 +1,13 @@
-class Course {
+export class Course {
 	speaker: string
 	name: string
 
-	id: number
+	id: string
 
 	constructor({ name = '_course name_', speaker = '_user name_' }) {
 		this.speaker = speaker
 		this.name = name
-		this.id = Math.random()
+		this.id = Math.random().toString()
 
 		return this
 	}
@@ -16,25 +16,25 @@ const enum Level {
 	speaker = 'speaker',
 	student = 'student',
 }
-class User {
+export class User {
 	level: Level
 	name: string
 	inactive = false
 
-	id: number
+	id: string
 
 	constructor({ name = '_course name_', level = Level.student, inactive = false }) {
 		this.level = level
 		this.name = name
 		this.inactive = inactive
-		this.id = Math.random()
+		this.id = Math.random().toString()
 
 		return this
 	}
 }
 
 // multiple array by itself and shuffle ids
-const copy = (a: Course|User, index: number, sourceArr: Array<Course|User>): Array<Course|User> => sourceArr.map(a => ({ ...a, id: Math.random() }))
+const copy = (a: Course|User, index: number, sourceArr: Array<Course|User>): Array<Course|User> => sourceArr.map(a => ({ ...a, id: Math.random().toString() }))
 // dechunk resulting 2d array
 const dechunk = (arr: Array<Course|User>, chunk: Array<Course|User>): Array<Course|User> => arr.concat(chunk)
 // randomize sorting
