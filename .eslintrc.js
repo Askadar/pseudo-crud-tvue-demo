@@ -1,5 +1,6 @@
 // global eslint config
 // @nuxtjs/eslint-config eslint eslint-config-standard eslint-config-problems eslint-plugin-import eslint-plugin-html eslint-plugin-jest eslint-plugin-node eslint-plugin-promise eslint-plugin-standard eslint-plugin-vue
+// ts: @typescript-eslint/parser
 
 module.exports = {
 	root: true,
@@ -8,21 +9,23 @@ module.exports = {
 		node: true,
 	},
 	parserOptions: {
-		parser: 'babel-eslint',
-		ecmaFeatures: {
-			legacyDecorators: true,
-		},
+		// parser: 'babel-eslint',
+		parser: '@typescript-eslint/parser',
+		// ecmaFeatures: {
+		// 	legacyDecorators: true,
+		// },
 	},
 	globals: {
 		chrome: true,
 	},
 	extends: [
-		'@nuxtjs',
+		// '@nuxtjs',
 		'problems',
 		'eslint:recommended',
 		'plugin:vue/recommended',
 	],
-	plugins: ['vue', 'eslint-plugin-html', 'eslint-plugin-vue'],
+	plugins: ['vue', 'eslint-plugin-html', 'eslint-plugin-vue',
+	'@typescript-eslint/eslint-plugin'],
 	rules: {
 		'no-console': 'off',
 		'no-debugger': 'off',
@@ -59,7 +62,8 @@ module.exports = {
 		'block-spacing': ['warn', 'always'],
 		'comma-dangle': ['warn', 'only-multiline'],
 		'no-global-assign': 'warn',
-		'no-unused-vars': 'warn',
+		// 'no-unused-vars': 'warn',
+		'@typescript-eslint/no-unused-vars': 'warn',
 		'callback-return': ['warn', ['callback', 'cb']],
 		'prefer-rest-params': 'warn',
 		'array-callback-return': 'warn',
