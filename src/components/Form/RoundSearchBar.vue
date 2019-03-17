@@ -8,7 +8,7 @@
 			type="search"
 			class="input adjacent to-left"
 			@input="$e => input($e.target.value)"
-		/>
+		>
 	</div>
 </template>
 
@@ -42,9 +42,9 @@ json('../../assets/variables.json')
 </style>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue } from "vue-property-decorator";
-import RoundButton from '@/components/Form/RoundButton.vue';
-import ZIcon from '@/components/ZIcon.vue';
+import { Component, Emit, Vue } from 'vue-property-decorator'
+import RoundButton from '@/components/Form/RoundButton.vue'
+import ZIcon from '@/components/ZIcon.vue'
 
 @Component({
 	components: {
@@ -53,8 +53,6 @@ import ZIcon from '@/components/ZIcon.vue';
 	}
 })
 export default class RoundSearchBar extends Vue {
-	@Prop({ type: String, default: '_ButtonName_' }) readonly title!: string;
-
 	searchString: string = ''
 
 	@Emit('input')

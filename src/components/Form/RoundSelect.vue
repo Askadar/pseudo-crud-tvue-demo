@@ -58,7 +58,7 @@ json('../../assets/variables.json')
 </style>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
 
 @Component({
 })
@@ -69,5 +69,10 @@ export default class RoundSelect extends Vue {
 	}) readonly items!: Array<string | ({ label: string, value: string })>
 
 	focus = false
+
+	@Emit('select')
+	select(value: number) {
+		return value
+	}
 }
 </script>
