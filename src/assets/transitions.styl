@@ -14,11 +14,26 @@ tr(time = 280ms)
 .page-enter-to, .page-leave
 	opacity 1
 
-.fade-enter, .fade-leave
+// 
+// fade for table
+.fade-enter, .fade-leave-to
 	opacity 0
 
-.fade-enter-active, .fade-leave-active
-	transition opacity (tr-time * 0) ease-in-out
+.fade-enter
+	transform translateY(-70px)
+	// display none
 
-.fade-enter-to, .fade-leave-to
+.fade-enter-active, .fade-leave-active
+	// transform translateY(0px)
+	z-index -10
+	transition all (tr-time * 2) ease-in-out
+
+.fade-enter-active
+	transition-delay (tr-time * 2)
+
+.fade-enter-to, .fade-leave
 	opacity 1
+	transform translateY(0)
+
+.fade-leave-to
+	transform translateY(7px)
