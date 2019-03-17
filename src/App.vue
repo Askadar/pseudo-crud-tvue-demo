@@ -1,7 +1,11 @@
 <template>
 	<div id="app">
 		<Nav />
-		<transition appear name="page">
+		<transition
+			appear
+			name="page"
+			mode="out-in"
+		>
 			<router-view :key="$route.name" />
 		</transition>
 	</div>
