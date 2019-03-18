@@ -4,21 +4,29 @@
 	font-family 'zarahion-icon-mix'
 	font-size 1em
 
+subtle()
+	&.subtle
+		background lighten(@background, 20%)
+
 .primary.primary
 	background color-primary
 	color color-white
+	subtle()
 
 .sub.sub
 	background color-sub
 	color color-white
+	subtle()
 
 .danger.danger
 	background color-danger
 	color color-white
+	subtle()
 
 .warn.warn
 	background color-warn
 	color color-white
+	subtle()
 
 // kinda should find better solution rather than snapping !important or tripling selector
 .has-text-primary
