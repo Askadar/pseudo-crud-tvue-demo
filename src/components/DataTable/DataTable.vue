@@ -176,8 +176,12 @@ export default class DataTable extends Vue {
 	private tableHeight: number | false = false
 	private transition: string | null = 'fade'
 
-	async calculateTableHeight (retry: number = 0) {
+	async calculateTableHeight (retry = 0) {
 		this.tableHeight = false
+		// if (this.filteredData.length === 0)
+		// 	return false
+
+		await new Promise(res => setTimeout(res, 16))
 		await this.$nextTick()
 		try {
 			// cause we know we're doing hacks
@@ -188,13 +192,12 @@ export default class DataTable extends Vue {
 				// @ts-ignore
 				(this.$refs.rows[0]._vnode.elm.offsetHeight * this.pageSize)
 		} catch (err) {
-			console.warn(err)
+			// console.warn(err)
 			// just glug the error and try again, we'll just break their browser in worst case,
 			// pff, who caaaares
 			if (retry >= 25)
 				return false
-			await new Promise(res => setTimeout(res, 16))
-			this.calculateTableHeight(retry++)
+			this.calculateTableHeight(retry + 1)
 		}
 	}
 	mounted () {
