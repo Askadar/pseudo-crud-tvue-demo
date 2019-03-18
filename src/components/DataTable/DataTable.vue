@@ -162,7 +162,7 @@ export default class DataTable extends Vue {
 		)
 	}
 	get maxPage () {
-		return Math.ceil(this.filteredData.length / this.pageSize)
+		return Math.max(1, Math.ceil(this.filteredData.length / this.pageSize))
 	}
 
 
