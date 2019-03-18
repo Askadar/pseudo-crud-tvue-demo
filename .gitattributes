@@ -1,2 +1,6 @@
+#tailwind
 src/assets/tailwind.styl linguist-vendored
 tailwind.js linguist-vendored
+
+# cause everything is stylus-ed
+*.css linguist-vendored
