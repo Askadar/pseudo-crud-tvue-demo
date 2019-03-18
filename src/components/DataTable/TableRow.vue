@@ -1,11 +1,12 @@
 <template>
 	<tr ref="row">
 		<td
-			v-for="key in columns"
+			v-for="{ key, descriptor, classComposer } in columns"
 			:key="key"
 			:contenteditable="editing"
+			:class="classComposer ? classComposer(data[key]) : null"
 			@input="$evt => editorData[key] = $evt.target.innerText"
-		>{{ data[key] }}</td>
+		>{{ !descriptor ? data[key] : descriptor(data[key]) }}</td>
 		<td key="actions" class="actions">
 			<template v-if="editing">
 				<round-button class="primary" @click="apply"><z-icon>apply</z-icon></round-button>
@@ -42,9 +43,9 @@ import { Course, User } from '@/api/data'
 export default class TableRow extends Vue {
 	@Prop({
 		type: Array,
-		default: () => (['_courses_', '_users_'])
+		default: () => ([{ key: '_courses_' }, { key: '_users_' }])
 	})
-	readonly columns!: [string];
+	readonly columns!: [{ key: string, descriptor?: Function }];
 
 	@Prop({
 		type: Object,

@@ -6,8 +6,8 @@
 		>
 			<table class="table container">
 				<tr ref="heading" class="table__heading">
-					<th v-for="column in columns" :key="column">
-						{{ column }}
+					<th v-for="({ key, label }) in transcribedColumns" :key="key">
+						{{ label }}
 					</th>
 					<th key="actions" class="actions">
 						actions
@@ -25,13 +25,13 @@
 						ref="rows"
 						:class="{ odd: index % 2 === 1 }"
 						:data="row"
-						:columns="columns"
+						:columns="transcribedColumns"
 						@row-edited="rowEdited"
 						@row-removed="rowRemoved"
 					/>
 				</transition-group>
 				<tbody v-else class="no-data">
-					<tr><td colspan="3">No data found</td></tr>
+					<tr><td :colspan="columns.length + 1">No data found</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -87,12 +87,14 @@
 </style>
 
 <script lang="ts">
-import { Component, Prop, Watch, Emit, Vue } from 'vue-property-decorator'
+import { Component, Prop, Watch, Emit, Mixins } from 'vue-property-decorator'
 
 import RoundButton from '@/components/Form/RoundButton.vue'
 import TableRow from './TableRow.vue'
 import Pagination from './Pagination.vue'
 import ZIcon from '@/components/ZIcon.vue'
+
+import columnsTranscribeMixin from './columnsTranscribeMixin'
 
 @Component({
 	components: {
@@ -102,12 +104,12 @@ import ZIcon from '@/components/ZIcon.vue'
 		ZIcon,
 	}
 })
-export default class DataTable extends Vue {
+export default class DataTable extends Mixins(columnsTranscribeMixin) {
 	@Prop({
 		type: Array,
 		default: () => (['_courses_', '_users_'])
 	})
-	readonly columns!: [string];
+	readonly columns!: [string | { key: string, label: string, descriptor?: Function}];
 
 	@Prop({
 		type: Array,
@@ -125,7 +127,7 @@ export default class DataTable extends Vue {
 		// const f = this.filter.toLowerCase()
 		const f = this.filter.toLocaleLowerCase()
 		return this.data.filter(obj => {
-			return this.columns.some(column => obj[column].toLocaleLowerCase().indexOf(f) > -1)
+			return this.transcribedColumns.some(column => obj[column.key].toLocaleLowerCase().indexOf(f) > -1)
 		})
 	}
 
