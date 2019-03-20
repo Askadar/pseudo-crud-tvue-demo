@@ -23,9 +23,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import Controls from '@/components/Controls.vue' // @ is an alias to /src
 import DataTable from '@/components/DataTable/DataTable.vue' // @ is an alias to /src
 
-import { User } from '@/api/data'
+import { User, Level } from '@/api/data'
 // mock ajax api
 import api from '../api'
+
+let levels: { key: string, value: string }[] = []
+for (let l in Level)
+	levels.push({ key: l, value: l})
 
 @Component({
 	components: {
@@ -42,12 +46,21 @@ export default class Users extends Vue {
 
 	columns = [
 		{ key: 'name' },
-		{ key: 'level' },
+		{
+			key: 'level',
+			editDescriptor: {
+				inputType: 'select',
+				selectOptions: levels
+			}
+		},
 		{
 			label: 'status',
 			key: 'inactive',
 			classComposer: (val: Boolean): string => val ? 'subtle danger' : 'subtle sub',
-			descriptor: (val: Boolean): string => val ? 'inactive' : 'active'
+			descriptor: (val: Boolean): string => val ? 'inactive' : 'active',
+			editDescriptor: {
+				inputType: 'checkbox',
+			}
 		}
 	]
 
