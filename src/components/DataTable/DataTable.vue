@@ -127,7 +127,11 @@ export default class DataTable extends Mixins(columnsTranscribeMixin) {
 		// const f = this.filter.toLowerCase()
 		const f = this.filter.toLocaleLowerCase()
 		return this.data.filter(obj => {
-			return this.transcribedColumns.some(column => obj[column.key].toLocaleLowerCase().indexOf(f) > -1)
+			return this.transcribedColumns
+				.some(column =>
+					typeof obj[column.key] === 'string' &&
+					obj[column.key].toLocaleLowerCase().indexOf(f) > -1
+				)
 		})
 	}
 
