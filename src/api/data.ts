@@ -12,7 +12,7 @@ export class Course {
 		return this
 	}
 }
-const enum Level {
+export enum Level {
 	speaker = 'speaker',
 	student = 'student',
 }
