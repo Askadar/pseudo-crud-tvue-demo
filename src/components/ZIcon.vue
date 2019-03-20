@@ -15,6 +15,10 @@ import { Component, Vue } from 'vue-property-decorator';
 const icons = {
 	'edit': 'icon-feather',
 
+	'apply': 'icon-check',
+
+	'cancel': 'icon-cancel',
+
 	'trash': 'icon-trash',
 	'delete': 'icon-trash',
 
@@ -35,7 +39,7 @@ export default class ZIcon extends Vue {
 	icon = null
 	text = ''
 
-	created() {
+	created () {
 		try {
 			const d = this.$slots.default
 			// @ts-ignore cause we're in a try for a reason
