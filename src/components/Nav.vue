@@ -19,13 +19,6 @@
 	background color-main
 	color color-main--lighten
 
-	.container
-		a:first-child
-			margin-left -0.5rem
-
-		a:last-child
-			margin-right -0.5rem
-
 	a
 		// font-weight bold
 		color lighten(@color, 20%)
@@ -54,4 +47,12 @@
 
 		&.router-link-exact-active
 			color color-white
+
+@media screen and (min-width: 576px)
+	#nav.container
+		a:first-child
+			margin-left -0.5rem
+
+		a:last-child
+			margin-right -0.5rem
 </style>
