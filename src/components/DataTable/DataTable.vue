@@ -94,7 +94,7 @@ import TableRow from './TableRow.vue'
 import Pagination from './Pagination.vue'
 import ZIcon from '@/components/ZIcon.vue'
 
-import columnsTranscribeMixin from './columnsTranscribeMixin'
+import columnsTranscribeMixin, { TranscribedColumn } from './columnsTranscribeMixin'
 
 @Component({
 	components: {
@@ -109,7 +109,7 @@ export default class DataTable extends Mixins(columnsTranscribeMixin) {
 		type: Array,
 		default: () => (['_courses_', '_users_'])
 	})
-	readonly columns!: [string | { key: string, label: string, descriptor?: Function}];
+	readonly columns!: [string | TranscribedColumn];
 
 	@Prop({
 		type: Array,

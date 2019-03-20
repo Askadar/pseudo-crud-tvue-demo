@@ -32,6 +32,7 @@ import Pagination from './Pagination.vue'
 import ZIcon from '@/components/ZIcon.vue'
 
 import { Course, User } from '@/api/data'
+import { TranscribedColumn } from './columnsTranscribeMixin'
 
 @Component({
 	components: {
@@ -45,7 +46,7 @@ export default class TableRow extends Vue {
 		type: Array,
 		default: () => ([{ key: '_courses_' }, { key: '_users_' }])
 	})
-	readonly columns!: [{ key: string, descriptor?: Function }];
+	readonly columns!: TranscribedColumn[];
 
 	@Prop({
 		type: Object,
