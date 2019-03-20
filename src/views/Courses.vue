@@ -5,7 +5,7 @@
 			title="Courses"
 			@search-updated="newSearch => searchFilter = newSearch"
 			@page-size-updated="newPageSize => pageSize = newPageSize"
-			@course-added="courseAdded"
+			@element-added="courseAdded"
 		/>
 		<data-table
 			:data="courses"
@@ -46,6 +46,7 @@ export default class Courses extends Vue {
 	}
 
 	courseAdded () {
+		// we could do it properly, but why bother
 		this.courses.splice(0, 0, new Course({
 			name: 'New course name...', speaker: 'New course speaker...'
 		}))

@@ -70,10 +70,9 @@ export default class Users extends Vue {
 	}
 
 	userAdded () {
-
-		// this.users.splice(0, 0, new User({
-	// 		name: 'New user name...', level: 'New user speaker...'
-	// 	}))
+		this.users.splice(0, 0, new User({
+			name: 'New user name...', level: Level.student
+		}))
 	}
 
 	async userEdited (user: User) {
