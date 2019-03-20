@@ -1,12 +1,16 @@
 <template>
 	<tr ref="row">
-		<td
-			v-for="{ key, descriptor, classComposer } in columns"
+		<table-cell
+			v-for="{ key, descriptor, classComposer, editDescriptor } in columns"
 			:key="key"
-			:contenteditable="editing"
 			:class="classComposer ? classComposer(data[key]) : null"
-			@input="$evt => editorData[key] = $evt.target.innerText"
-		>{{ !descriptor ? data[key] : descriptor(data[key]) }}</td>
+			:editing="editing"
+			:edit-descriptor="editDescriptor"
+			:value="data[key]"
+			@input="value => editorData[key] = value"
+		>
+			{{ !descriptor ? data[key] : descriptor(data[key]) }}
+		</table-cell>
 		<td key="actions" class="actions">
 			<template v-if="editing">
 				<round-button
@@ -45,6 +49,7 @@ import { Component, Prop, Emit, Vue } from 'vue-property-decorator'
 
 import RoundButton from '@/components/Form/RoundButton.vue'
 import Pagination from './Pagination.vue'
+import TableCell from './TableCell'
 import ZIcon from '@/components/ZIcon.vue'
 
 import { Course, User } from '@/api/data'
@@ -54,6 +59,7 @@ import { TranscribedColumn } from './columnsTranscribeMixin'
 	components: {
 		RoundButton,
 		Pagination,
+		TableCell,
 		ZIcon,
 	}
 })
