@@ -9,12 +9,28 @@
 		>{{ !descriptor ? data[key] : descriptor(data[key]) }}</td>
 		<td key="actions" class="actions">
 			<template v-if="editing">
-				<round-button class="primary" @click="apply"><z-icon>apply</z-icon></round-button>
-				<round-button class="warn" @click="cancel"><z-icon>cancel</z-icon></round-button>
+				<round-button
+					key="apply"
+					class="primary"
+					@click="apply"
+				><z-icon>apply</z-icon></round-button>
+				<round-button
+					key="cancel"
+					class="warn"
+					@click="cancel"
+				><z-icon>cancel</z-icon></round-button>
 			</template>
 			<template v-else>
-				<round-button class="sub" @click="edit"><z-icon>edit</z-icon></round-button>
-				<round-button class="danger" @click="remove"><z-icon>delete</z-icon></round-button>
+				<round-button
+					key="edit"
+					class="sub"
+					@click="edit"
+				><z-icon>edit</z-icon></round-button>
+				<round-button
+					key="remove"
+					class="danger"
+					@click="remove"
+				><z-icon>delete</z-icon></round-button>
 			</template>
 		</td>
 	</tr>
