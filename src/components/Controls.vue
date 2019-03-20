@@ -21,9 +21,6 @@
 .controls
 	margin 2rem auto
 
-	& > *
-		max-width 33%
-
 	.left
 		margin-right auto
 
