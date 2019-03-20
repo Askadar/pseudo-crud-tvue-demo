@@ -2,15 +2,25 @@
 	<div :class="{ 'select-wrap': true, focus }">
 		<span class="arrow z-icon">&#xf107;</span>
 		<select
-			@change="$e => $emit('select', $e.target.value)"
+			@change="select"
 			@focus="focus = true"
 			@blur="focus = false"
 		>
 			<template v-for="item in items">
-				<option :value="item" v-if="typeof item !== 'object'" :key="item">
+				<option
+					v-if="typeof item !== 'object'"
+					:key="item"
+					:value="item"
+					:selected="item === value"
+				>
 					{{ item }}
 				</option>
-				<option :value="item.value" v-else :key="item.label">
+				<option
+					v-else
+					:key="item.label"
+					:value="item.value"
+					:selected="item.value === value"
+				>
 					{{ item.label }}
 				</option>
 			</template>
@@ -58,7 +68,7 @@ json('../../assets/variables.json')
 </style>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
+import { Component, Prop, Emit, Vue } from 'vue-property-decorator'
 
 @Component({
 })
@@ -66,13 +76,18 @@ export default class RoundSelect extends Vue {
 	@Prop({
 		type: Array,
 		default: () => (['5', '10', '15'])
-	}) readonly items!: Array<string | ({ label: string, value: string })>
+	}) readonly items!: (string | { label: string, value: string })[]
+
+	@Prop({
+		type: String,
+		default: '0'
+	}) readonly value!: string
 
 	focus = false
 
 	@Emit('select')
-	select(value: number) {
-		return value
+	select (evt: Event) {
+		return evt.target.value
 	}
 }
 </script>
